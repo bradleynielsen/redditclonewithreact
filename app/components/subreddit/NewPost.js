@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 
 
@@ -12,6 +13,7 @@ export default class Newpost extends Component {
 			posttext: ""
 		}
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 	}
 
 	handleChange(event) {
@@ -19,18 +21,38 @@ export default class Newpost extends Component {
 		console.log(event.target)
 		newState[event.target.id] = event.target.value
 		this.setState(newState)
-
 	}
 
 	handleSubmit() {
 
 		console.log(this.state)
-		// this.setState({
-			 
-		// });
+		console.log(this.state.postname)
+		console.log(this.state.posttext)
+		console.log(this.props.routeParams.subredditId)
+
+
+
+		axios.post('posts/new', {
+		    title:this.state.postname,
+			content:this.state.posttext,
+			subredditId: this.props.routeParams.subredditId,
+			comments: []
+		  })
+		  .then(function (response) {
+		    console.log(response);
+		  })
+		  // .catch(function (error) {
+		  //   console.log(error);
+		  // });
+
+		this.setState({
+			postname: "",
+			posttext: ""
+		});
 	}
 
 	render() {
+		console.log(this.props)
 		return (
 		
 			<div className="formGroup">				

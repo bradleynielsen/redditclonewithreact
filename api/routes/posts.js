@@ -14,4 +14,18 @@ router.get('/by-subreddit/:subreddit', (req, res) => {
 	});
 });
 
+
+router.post('/new', (req, res) => {
+	var newPost = new Post(req.body);
+	newPost.save((err,results) => {
+		if (err) {
+			res.send(err);
+
+		} else {
+			res.json(results);
+			
+		}
+	})
+});
+
 module.exports = router;

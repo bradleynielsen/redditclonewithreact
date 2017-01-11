@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class Main extends Component {
 	render() {
-		console.log("main....");
+		console.log("rendering main....");
 		return (
 			<div className="container">
 	      <div className="jumbotron">
